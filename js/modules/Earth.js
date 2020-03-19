@@ -15,7 +15,7 @@ class Earth {
         this.scene = scene;
         //this.controls = controls;
 
-        this.initScene();
+        //this.initScene();
     }
 
     createSphere(radius, segments, noCloudTexture, bumpMap, waterTexture) {
@@ -59,13 +59,15 @@ class Earth {
 
         this.stars = this.createStars(90, 64, this.starFieldTexture);
 
+        /*
         this.scene.add(this.sphere);
+
         this.scene.add(this.clouds);
-        this.scene.add(this.stars);
-        /*for(let object of [this.sphere, this.clouds, this.stars])
+        this.scene.add(this.stars);*/
+        for(let object of [this.sphere, this.clouds, this.stars])
         {
             this.scene.add(object);
-        }*/
+        }
     }
 
     render() {
