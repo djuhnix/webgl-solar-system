@@ -1,9 +1,12 @@
 class Moon {
+
     constructor(radius, segments, scene, controls) {
         this.scene = scene;
         this.controls = controls;
         this.moon = this.createMoon(radius, segments, Moon.moonTexture);
-        this.moon.position.set(35,0,0);
+        this.moon.position.set(Moon.R,0,0);
+        this.theta = 0;
+
     }
     initScene() {
         this.scene.add(this.moon);
@@ -20,17 +23,16 @@ class Moon {
 
     render() {
         this.controls.update();
-        let theta = 0, r = 35;
-        const dTheta = 2 * Math.PI / 1000;
 
         //Moon orbit
-        theta += dTheta;
-        this.moon.position.x = r * Math.cos(theta);
-        this.moon.position.z = r * Math.sin(theta);
+        this.theta += Moon.DTHETA;
+        this.moon.position.x = Moon.R * Math.cos(this.theta);
+        this.moon.position.z = Moon.R * Math.sin(this.theta);
     }
 
 }
-
+Moon.R = 35;
+Moon.DTHETA = 2 * Math.PI / 1000;
 Moon.moonTexture = "images/moon_texture.jpg";
 
 export default Moon;
