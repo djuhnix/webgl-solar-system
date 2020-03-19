@@ -1,4 +1,5 @@
 import Earth from "./Earth.js";
+//import * as THREE from "./three.js";
 
 class SolarSystem {
     constructor() {
@@ -13,16 +14,17 @@ class SolarSystem {
         let width  = window.innerWidth,
             height = window.innerHeight;
 
-        //this.controls = new THREE.TrackballControls(this.camera);
+
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize( width, height );
-        document.body.appendChild( this.renderer.domElement );
-
-        this.earth = new Earth(0.5, 32, 6, this.scene);
+        let webglDomEl = this.renderer.domElement;
+        document.body.appendChild( webglDomEl );
 
         this.camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
         this.camera.position.z = 30;
+        this.controls = new THREE.OrbitControls( this.camera, webglDomEl );
+        this.earth = new Earth(3, 32, 6, this.scene, this.controls);
 
         this.initScene();
         this.animate();
